@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EpiScope Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>EpiScope</h1>
+      <span class="sub">Disease surveillance, forecasting &amp; response planning</span>
+    </div>
+    <div class="banner" id="banner">Synthetic data</div>
+  </header>
+
+  <section class="controls" aria-label="Filters and what-if settings">
+    <label>Disease
+      <select id="sel-disease">
+        <option value="dengue">Dengue</option>
+        <option value="diarrhoea">Diarrhoea / cholera</option>
+        <option value="ili">Influenza-like illness</option>
+        <option value="malaria">Malaria</option>
+      </select>
+    </label>
+    <label>District
+      <select id="sel-district"><option value="">All Bangladesh</option></select>
+    </label>
+    <button id="btn-reset" type="button">Reset view</button>
+    <div class="whatif" aria-label="What-if panel">
+      <label>Alert threshold <output id="out-threshold"></output>
+        <input id="rng-threshold" type="range" min="1" max="6" step="0.5">
+      </label>
+      <label>Budget <output id="out-budget"></output>
+        <input id="rng-budget" type="range" min="0" max="4" step="1">
+      </label>
+      <label>Equity floor &alpha; <output id="out-alpha"></output>
+        <input id="rng-alpha" type="range" min="0" max="4" step="1">
+      </label>
+    </div>
+  </section>
+
+  <main class="grid">
+    <article class="card" id="card-map">
+      <header><h2>1 · Incidence per 100,000 and alerts</h2><span class="fresh"></span></header>
+      <p class="hint" id="map-caption"></p>
+      <div id="map" class="viz"></div>
+      <div id="map-legend" class="legend"></div>
+    </article>
+
+    <article class="card" id="card-ts">
+      <header><h2>2 · Weekly cases, forecast and alert threshold</h2><span class="fresh"></span></header>
+      <p class="hint" id="ts-caption"></p>
+      <div id="ts" class="viz"></div>
+      <div id="ts-legend" class="legend"></div>
+    </article>
+
+    <article class="card wide" id="card-heat">
+      <header><h2>3 · Seasonal heatmap: district × week</h2><span class="fresh"></span></header>
+      <p class="hint">Drag on the time-series context strip to change the period. Hatched cells = suppressed (1–4 cases).</p>
+      <div id="heat" class="viz"></div>
+    </article>
+
+    <article class="card" id="card-alloc">
+      <header><h2>4 · Supplies: forecast demand, stock and recommended allocation</h2><span class="fresh"></span></header>
+      <div class="row">
+        <label>Resource
+          <select id="sel-resource">
+            <option value="iv_saline">IV saline (bags)</option>
+            <option value="ns1_kits">NS1 test kits</option>
+            <option value="ors">ORS sachets</option>
+          </select>
+        </label>
+        <span class="hint" id="alloc-caption"></span>
+      </div>
+      <div id="alloc" class="viz"></div>
+      <div id="alloc-legend" class="legend"></div>
+      <h3>Efficiency vs equity across budgets</h3>
+      <div id="curve" class="viz"></div>
+    </article>
+
+    <article class="card" id="card-table">
+      <header><h2>5 · Early-warning table</h2><span class="fresh"></span></header>
+      <p class="hint" id="table-caption"></p>
+      <div class="table-wrap"><table id="tbl" aria-label="Ranked early warnings"></table></div>
+    </article>
+
+    <article class="card" id="card-cal">
+      <header><h2>Preparedness calendar (next year)</h2><span class="fresh"></span></header>
+      <div class="table-wrap"><table id="cal"></table></div>
+    </article>
+
+    <article class="card" id="card-dq">
+      <header><h2>Data quality of the latest loads</h2><span class="fresh"></span></header>
+      <div id="dq"></div>
+    </article>
+
+    <article class="card wide" id="card-eval">
+      <header><h2>How good are the models? (backtests against baselines)</h2><span class="fresh"></span></header>
+      <div id="eval" class="eval-grid"></div>
+    </article>
+  </main>
+
+  <footer class="foot" id="foot"></footer>
+  <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+
+  <script src="vendor/d3.min.js"></script>
+  <script src="vendor/topojson-client.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
