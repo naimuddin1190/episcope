@@ -28,3 +28,4 @@ AI output was treated as a draft. Numbers in the report come from our own runs, 
 
 The four test files tests/test_ingest_checksum.py, tests/test_forecast_math.py, tests/test_detection_ears.py and tests/test_detection_score.py were drafted with Claude (Anthropic) from the existing module code. Puja Dey read each test, checked it against the code it tests, ran the full suite on the team's main machine (52 passed) and is responsible for explaining them.
 
+- pipeline/gold/build.py: column pruning before de-duplication suggested by Claude; verified by Naim (identical gold totals before/after, 52 tests passed).
