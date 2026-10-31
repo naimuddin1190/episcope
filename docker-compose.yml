@@ -1,0 +1,12 @@
+services:
+  episcope:
+    build: .
+    ports:
+      - "8000:8000"   # dashboard
+      - "4040:4040"   # Spark UI while a stage runs
+    environment:
+      EPISCOPE_SF: "${EPISCOPE_SF:-0.05}"
+      SPARK_DRIVER_MEMORY: "${SPARK_DRIVER_MEMORY:-6g}"
+    volumes:
+      - ./data:/app/data
+      - ./docs/experiments:/app/docs/experiments
