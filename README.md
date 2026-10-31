@@ -7,7 +7,7 @@ CSE 4345 Big Data Analytics, Complex Engineering Problem, Premier University Chi
 > 📄 **Report:** `docs/EpiScope_report.pdf`
 > ⚠️ All patient-level data is **synthetic** (teaching case). Real public data: district boundaries (geoBoundaries via bangladesh-geojson), census population, Open-Meteo weather.
 
-Group: MD Naim Uddin Mozumdar (Data Engineer) · Shamraj Deb Nath (Analytics Engineer) · Syed Nasibur Rahaman Ratul (Visualisation Engineer)
+Group: MD Naim Uddin Mozumdar (Data Engineer) · Shamraj Deb Nath (Analytics Engineer) · Syed Nasibur Rahaman Ratul (Visualisation Engineer) · Puja Dey (Testing & QA Engineer)
 
 ---
 
@@ -122,7 +122,7 @@ docs/            proposal.md, schema.md, data_sources.md, experiments/, guides/ 
 | ENG-1 | `Makefile` (`make all`), pinned `requirements.txt` | 3 |
 | ENG-2 | `scripts/scaling_experiment.sh`, `docs/experiments/scaling_summary.md` | 6 |
 | ENG-3 | `common/spark.py` (broadcast join, AQE skew handling), `scripts/optimisation_experiment.sh` | 6 |
-| ENG-4 | `tests/` (pytest), `orchestration/run_pipeline.py` (retries) | 3 |
+| ENG-4 | `tests/` (pytest), `orchestration/run_pipeline.py` (retries); test suite and usability testing owned by Testing & QA | 3 |
 
 Not implemented (honest scope): ING-5/6/7 (HDFS/MinIO, streaming, Delta), DQ-4, PRV-3/4, AN-10, VIS-7.
 
@@ -130,12 +130,13 @@ Not implemented (honest scope): ING-5/6/7 (HDFS/MinIO, streaming, Delta), DQ-4, 
 
 | Time | Chapter | Presenter |
 |---|---|---|
-| 00:00 | 1. Problem, stakeholders, conflicts C1-C5 | |
+| 00:00 | 1. Problem, stakeholders, conflicts C1-C5 | Ratul |
 | | 2. Architecture walkthrough | Naim |
 | | 3. Pipeline run: clean run, incremental day, idempotent re-run, quarantine | Naim |
 | | 4. Analytics vs baselines | Shamraj |
 | | 5. Dashboard walkthrough (linked views, what-if) | Ratul |
-| | 6. Recommendations, ethics, limitations | |
+| | 6. Testing and validation: test suite, failing-test demo, usability test results | Puja |
+| | 7. Recommendations, ethics, limitations | Shamraj |
 
 ## 8. Credits
 
