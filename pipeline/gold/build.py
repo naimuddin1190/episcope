@@ -44,8 +44,13 @@ def run() -> None:
     cutoff = enc_all.agg(F.max("report_date")).first()[0]
     mature_before = F.date_sub(F.lit(cutoff), config.MATURITY_DAYS)
 
-    # cross-batch de-duplication of resubmitted records (keep one copy of each encounter_id)
-    enc = enc_all.where(F.col("epi_year").isin(years)).dropDuplicates(["encounter_id"]).cache()
+    # cross-batch de-duplication of resubmitted records (keep one copy of each encounter_id).
+    # ENG-3: keep only the columns the gold marts use BEFORE the de-duplication shuffle and the
+    # cache; otherwise every silver column (hashes, checksums, file names) is shuffled and cached.
+    gold_cols = ["encounter_id", "district_code", "disease", "week_start", "epi_year", "epi_week",
+                 "admitted", "lab_confirmed", "outcome", "batch_id", "facility_id", "delay_days"]
+    enc = (enc_all.where(F.col("epi_year").isin(years)).select(*gold_cols)
+           .dropDuplicates(["encounter_id"]).cache())
 
     dist = spark.read.parquet(str(config.SILVER / "districts"))
     fac = spark.read.parquet(str(config.SILVER / "facilities"))
@@ -80,7 +85,9 @@ def run() -> None:
     weekly.write.mode("overwrite").partitionBy("epi_year").parquet(str(config.GOLD / "weekly_cases"))
 
     # naive view: counts by report week (what a spreadsheet of "reports received" would show)
-    by_report = (enc_all.where(F.col("report_epi_year").isin(years)).dropDuplicates(["encounter_id"])
+    by_report = (enc_all.where(F.col("report_epi_year").isin(years))
+                 .select("encounter_id", "district_code", "disease", "report_week_start", "report_epi_year")
+                 .dropDuplicates(["encounter_id"])
                  .where(F.col("disease") != "other")
                  .groupBy("district_code", "disease", "report_week_start", "report_epi_year")
                  .agg(F.count("*").alias("cases"))
