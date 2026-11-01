@@ -29,3 +29,6 @@ AI output was treated as a draft. Numbers in the report come from our own runs, 
 The four test files tests/test_ingest_checksum.py, tests/test_forecast_math.py, tests/test_detection_ears.py and tests/test_detection_score.py were drafted with Claude (Anthropic) from the existing module code. Puja Dey read each test, checked it against the code it tests, ran the full suite on the team's main machine (52 passed) and is responsible for explaining them.
 
 - pipeline/gold/build.py: column pruning before de-duplication suggested by Claude; verified by Naim (identical gold totals before/after, 52 tests passed).
+
+## Report, video and figures
+- The report draft (docs/EpiScope_report.pdf), the video talking points and practice scripts, and the two report figures (architecture, efficiency-equity curve) were drafted with Claude (Anthropic) from our own run outputs (docs/experiments, gold/evaluation, dashboard data) and the usability test notes. The team checked every number against the run outputs, edited the text and is responsible for its content.
