@@ -3,7 +3,7 @@
 **A big-data surveillance, forecasting and response-planning platform for seasonal, tropical and epidemic diseases in Bangladesh.**
 CSE 4345 Big Data Analytics, Complex Engineering Problem, Premier University Chittagong.
 
-> 🎥 **Video presentation:** `<PASTE YOUR YOUTUBE (UNLISTED) LINK HERE>`  (chapters/timestamps below)
+> 🎥 **Video presentation:** https://youtu.be/cjTeE0yruFo  (chapters/timestamps below)
 > 📄 **Report:** `docs/EpiScope_report.pdf`
 > ⚠️ All patient-level data is **synthetic** (teaching case). Real public data: district boundaries (geoBoundaries via bangladesh-geojson), census population, Open-Meteo weather.
 
@@ -128,15 +128,16 @@ Not implemented (honest scope): ING-5/6/7 (HDFS/MinIO, streaming, Delta), DQ-4, 
 
 ## 7. Video chapters
 
+Video (19:00, unlisted): https://youtu.be/cjTeE0yruFo
+
 | Time | Chapter | Presenter |
 |---|---|---|
-| 00:00 | 1. Problem, stakeholders, conflicts C1-C5 | Ratul |
-| | 2. Architecture walkthrough | Naim |
-| | 3. Pipeline run: clean run, incremental day, idempotent re-run, quarantine | Naim |
-| | 4. Analytics vs baselines | Shamraj |
-| | 5. Dashboard walkthrough (linked views, what-if) | Ratul |
-| | 6. Testing and validation: test suite, failing-test demo, usability test results | Puja |
-| | 7. Recommendations, ethics, limitations | Shamraj |
+| 00:00 | Title | |
+| 00:07 | 1. Problem, stakeholders, conflicts C1-C5; dashboard walkthrough (linked views, what-if) | Ratul |
+| 04:47 | 2. Architecture; pipeline run: clean run, incremental day, idempotent re-run, quarantine, scaling | Naim |
+| 09:42 | 3. Analytics vs baselines; recommendations, ethics, limitations | Shamraj |
+| 14:29 | 4. Testing and validation: test suite, failing-test demo, usability test results | Puja |
+| 18:52 | Thank you | |
 
 ## 8. Credits
 
